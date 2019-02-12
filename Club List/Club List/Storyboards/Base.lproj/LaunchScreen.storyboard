@@ -18,17 +18,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view clipsSubviews="YES" alpha="0.45000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bt9-aZ-XGF">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <color key="backgroundColor" red="0.088155781010000003" green="0.47767829940000001" blue="0.75806581969999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company club" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gO4-NO-DsA">
-                                <rect key="frame" x="40" y="326.33333333333331" width="295" height="160.33333333333331"/>
+                                <rect key="frame" x="40" y="326" width="295" height="160.33333333333337"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="70"/>
-                                <color key="textColor" red="0.088155781013370973" green="0.47767829942450674" blue="0.75806581974029541" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.96619001019999995" green="0.96619001019999995" blue="0.96619001019999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="bt9-aZ-XGF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="BQs-rO-PrC"/>
+                            <constraint firstItem="bt9-aZ-XGF" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="OAZ-B6-cjj"/>
                             <constraint firstItem="gO4-NO-DsA" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="SZf-4D-PLl"/>
+                            <constraint firstAttribute="bottom" secondItem="bt9-aZ-XGF" secondAttribute="bottom" id="XVC-T1-aG7"/>
                             <constraint firstItem="gO4-NO-DsA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="h6i-lJ-xHg"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bt9-aZ-XGF" secondAttribute="trailing" id="nqE-Zz-JQa"/>
                             <constraint firstAttribute="trailing" secondItem="gO4-NO-DsA" secondAttribute="trailing" constant="40" id="pwk-7o-hLK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
