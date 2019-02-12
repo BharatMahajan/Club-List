@@ -80,9 +80,9 @@ class MemberViewController: UIViewController,UITableViewDelegate,UITableViewData
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.identifierMemberTableViewCell, for: indexPath) as! MemberTableViewCell
         cell.selectionStyle = .none
         
-        cell.viewContent.layer.shadowColor = UIColor.gray.cgColor
+        cell.viewContent.layer.shadowColor = UIColor.darkGray.cgColor
         cell.viewContent.layer.shadowOffset = CGSize.init(width: 0.8, height: 0.8)
-        cell.viewContent.layer.shadowOpacity = 0.20
+        cell.viewContent.layer.shadowOpacity = 0.80
         cell.viewContent.layer.shadowRadius = 1
 
         var memberData : Member!
@@ -387,6 +387,8 @@ class MemberViewController: UIViewController,UITableViewDelegate,UITableViewData
         let actionCancel = UIAlertAction(title: "Cancel", style: .cancel) { (action:UIAlertAction) in
             sortActionSheet.dismiss(animated: true, completion: nil)
         }
+        actionCancel.setValue(UIColor.red, forKey: "titleTextColor")
+
         sortActionSheet.addAction(actionNameAsc)
         sortActionSheet.addAction(actionNameDesc)
         sortActionSheet.addAction(actionAgeAsc)
@@ -488,6 +490,8 @@ class MemberViewController: UIViewController,UITableViewDelegate,UITableViewData
         let actionCancel = UIAlertAction(title: "Cancel", style: .cancel) { (action:UIAlertAction) in
             filterActionSheet.dismiss(animated: true, completion: nil)
         }
+        actionCancel.setValue(UIColor.red, forKey: "titleTextColor")
+
         filterActionSheet.addAction(actionAll)
         filterActionSheet.addAction(actionFavorite)
         filterActionSheet.addAction(actionCancel)

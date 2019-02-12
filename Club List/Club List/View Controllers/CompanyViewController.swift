@@ -24,7 +24,6 @@ class CompanyViewController: UIViewController,UITableViewDelegate,UITableViewDat
     var selectedCompanyId = ""
     var selectedCompanyTitle = ""
     var isFiltered = false
-    let refreshControl = UIRefreshControl()
     var networkClass = NetworkClass()
     var sortAscending = true
     var filterType = 0
@@ -36,9 +35,6 @@ class CompanyViewController: UIViewController,UITableViewDelegate,UITableViewDat
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.largeTitleDisplayMode = .automatic
         
-        refreshControl.addTarget(self, action: #selector(refreshCompanyList(_:)), for: .valueChanged)
-        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-
         // Declare the searchController
         self.resultSearchController = ({
             let searchController = UISearchController(searchResultsController: nil)
@@ -54,7 +50,6 @@ class CompanyViewController: UIViewController,UITableViewDelegate,UITableViewDat
         let cellCompanyList = UINib(nibName: Constants.identifierCompanyTableViewCell, bundle: nil)
         self.tblCompanyList.register(cellCompanyList, forCellReuseIdentifier: Constants.identifierCompanyTableViewCell)
         self.tblCompanyList.tableFooterView = UIView.init(frame: CGRect.zero)
-        self.tblCompanyList.refreshControl = refreshControl
         networkClass = NetworkClass.sharedInstance
         networkClass.session = URLSession.shared
         networkClass.cache = NSCache()
@@ -69,10 +64,7 @@ class CompanyViewController: UIViewController,UITableViewDelegate,UITableViewDat
     }
 
     //MARK: - Network call
-    @objc private func refreshCompanyList(_ sender: Any) {
-        fetchCompanyList()
-    }
-    
+
     func fetchCompanyList()
     {
         self.viewLoader.isHidden = false
@@ -96,7 +88,6 @@ class CompanyViewController: UIViewController,UITableViewDelegate,UITableViewDat
                     }
                     self.viewLoader.isHidden = true
                     self.tblCompanyList.reloadData()
-                    self.refreshControl.endRefreshing()
                 }
             }
             else
@@ -106,7 +97,6 @@ class CompanyViewController: UIViewController,UITableViewDelegate,UITableViewDat
                     self.lblNoRecords.text = "Unable to fetch records"
                     self.viewLoader.isHidden = true
                     self.tblCompanyList.isHidden = true
-                    self.refreshControl.endRefreshing()
                 }
             }
         }
@@ -137,9 +127,9 @@ class CompanyViewController: UIViewController,UITableViewDelegate,UITableViewDat
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.identifierCompanyTableViewCell, for: indexPath) as! CompanyTableViewCell
         cell.selectionStyle = .none
         
-        cell.viewContent.layer.shadowColor = UIColor.gray.cgColor
+        cell.viewContent.layer.shadowColor = UIColor.darkGray.cgColor
         cell.viewContent.layer.shadowOffset = CGSize.init(width: 0.8, height: 0.8)
-        cell.viewContent.layer.shadowOpacity = 0.20
+        cell.viewContent.layer.shadowOpacity = 0.80
         cell.viewContent.layer.shadowRadius = 1
 
         var companyData : Company!
@@ -166,7 +156,7 @@ class CompanyViewController: UIViewController,UITableViewDelegate,UITableViewDat
         cell.lblWebsite.addGestureRecognizer(lblTapGesture)
         cell.lblWebsite.isUserInteractionEnabled = true
         cell.txtDescription.text = companyData.about
-        cell.txtDescription.isUserInteractionEnabled = false
+        cell.txtDescription.scrollsToTop = true
         cell.updateCompanyCell(company: companyData)
         cell.activityIndicatorCompanyLogo.startAnimating()
         cell.activityIndicatorCompanyLogo.isHidden = false
@@ -528,6 +518,8 @@ class CompanyViewController: UIViewController,UITableViewDelegate,UITableViewDat
         let actionCancel = UIAlertAction(title: "Cancel", style: .cancel) { (action:UIAlertAction) in
             sortActionSheet.dismiss(animated: true, completion: nil)
         }
+        actionCancel.setValue(UIColor.red, forKey: "titleTextColor")
+
         sortActionSheet.addAction(actionNameAsc)
         sortActionSheet.addAction(actionNameDesc)
         sortActionSheet.addAction(actionCancel)
@@ -666,6 +658,8 @@ class CompanyViewController: UIViewController,UITableViewDelegate,UITableViewDat
         let actionCancel = UIAlertAction(title: "Cancel", style: .cancel) { (action:UIAlertAction) in
             filterActionSheet.dismiss(animated: true, completion: nil)
         }
+        actionCancel.setValue(UIColor.red, forKey: "titleTextColor")
+
         filterActionSheet.addAction(actionAll)
         filterActionSheet.addAction(actionFollow)
         filterActionSheet.addAction(actionFavorite)
